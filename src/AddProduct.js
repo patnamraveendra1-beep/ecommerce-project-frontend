@@ -10,9 +10,10 @@ function AddProduct() {
   });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setProduct({
       ...product,
-      [e.target.name]: e.target.value,
+      [name]: name === "price" ? Number(value) : value,
     });
   };
 
