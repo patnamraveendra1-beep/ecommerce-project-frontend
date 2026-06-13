@@ -23,7 +23,7 @@ const res = await axios.get(
 
 };
 
-const updateStatus = async (id) => {
+const updateStatus = async (id, status) => {
 try {
 await axios.put(
 `https://ecommerce-backend-nu1x.onrender.com/api/admin/orders/${id}`,
@@ -39,7 +39,7 @@ status: "Delivered",
 
 };
 
-const deleteOrder = async (id) => {
+const deleteOrder = async (id,) => {
 try {
 await axios.delete(
 `https://ecommerce-backend-nu1x.onrender.com/api/admin/orders/${id}`
@@ -106,20 +106,32 @@ Admin Orders
           </td>
 
           <td>
-            <button
-              onClick={() =>
-                updateStatus(order._id)
+            <select
+              value={order.status || "Pending"}
+              onChange={(e) =>
+                updateStatus(
+                  order._id,
+                  e.target.value
+                )
               }
-              disabled={
-                order.status ===
-                "Delivered"
-              }
+
             >
-              {order.status ===
-              "Delivered"
-                ? "Delivered"
-                : "Deliver"}
-            </button>
+              <option value="Pending">
+                Pending
+              </option>
+              
+              <option value="Shipped">
+                Shipped
+              </option>
+
+              <option value="Delivered">
+                Delivered
+              </option>
+
+              <option value="Cancelled">
+                Cancelled
+              </option>
+            </select>
           </td>
 
           <td>
