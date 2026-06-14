@@ -69,7 +69,7 @@ function Checkout() {
 
       // STEP 2: Razorpay options
       const options = {
-        key: "rzp_test_T18SDEWCgEcmAi",
+        key: "rzp_test_T1C2X5Nvf5sZaB",
         amount: order.amount,
         currency: "INR",
         name: "Patnam Ecommerce",
