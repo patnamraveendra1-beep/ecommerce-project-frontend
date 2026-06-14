@@ -12,9 +12,10 @@ fetchOrders();
 const fetchOrders = async () => {
 const token = localStorage.getItem("token");
 
+
 try {
   const res = await axios.get(
-     "https://ecommerce-backend-nu1x.onrender.com/api/orders",
+    "https://ecommerce-backend-nu1x.onrender.com/api/orders",
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -27,11 +28,11 @@ try {
   console.log(err);
 }
 
+
 };
 
-return (
-<div>
-<Navbar />
+return ( <div> <Navbar />
+
 
   <h1
     style={{
@@ -58,31 +59,38 @@ return (
           margin: "20px",
           padding: "20px",
           borderRadius: "10px",
-          boxShadow:
-            "0 2px 5px rgba(0,0,0,0.1)",
+          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
         }}
       >
-        <h2>
-          Total: ₹ {order.total}
-        </h2>
+        <h2>Total: ₹ {order.total}</h2>
 
         <p>
           Items: {order.items.length}
         </p>
 
         <p>
-          Date:
-          {" "}
-          {new Date(
-            order.createdAt
-          ).toLocaleString()}
+          Date:{" "}
+          {new Date(order.createdAt).toLocaleString()}
         </p>
 
         <p>
-          Status:
-          {" "}
-          <strong>
+          Status:{" "}
+          <strong
+            style={{
+              color:
+                order.status === "Paid"
+                  ? "green"
+                  : "orange",
+            }}
+          >
             {order.status || "Pending"}
+          </strong>
+        </p>
+
+        <p>
+          Payment ID:{" "}
+          <strong>
+            {order.paymentId || "N/A"}
           </strong>
         </p>
 
@@ -115,7 +123,7 @@ return (
               <p>
                 Quantity : {item.quantity || 1}
               </p>
-              
+
               <p>
                 ₹ {item.price}
               </p>
@@ -126,6 +134,7 @@ return (
     ))
   )}
 </div>
+
 
 );
 }

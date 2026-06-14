@@ -206,7 +206,14 @@ return (
         </h2>
 
         <button
-          onClick={() => navigate("/checkout")}
+          onClick={() => 
+            navigate("/checkout", {
+              state: {
+                totalPrice,
+              },
+            })
+          }
+            
           style={{
             padding: "10px 20px",
             marginRight: "10px",
